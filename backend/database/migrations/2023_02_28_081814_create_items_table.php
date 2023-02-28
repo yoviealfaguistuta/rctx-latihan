@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('items', function (Blueprint $table) {
-            $table->integer('id');
-            $table->integer('todo_id');
+            $table->id();
+            $table->foreign('todo_id')->references('id')->on('todos');
             $table->string('title');
             $table->timestamps();
         });
