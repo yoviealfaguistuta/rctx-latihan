@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Todo;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
+
 
 class TodoController extends Controller
 {
     public function index()
     {
-        $todos = Todo::get();
+        $todos = Todo::all();
+        // $todos = Todo::with('items')->find($id);
         return response()->json($todos);
 
     }
@@ -21,16 +26,23 @@ class TodoController extends Controller
         $todo->description = $request->description;
         $todo->save();
         return response()->json($todo);
-
         
     }
 
-    public function update(Request $request, $id)
+    public function detailTodo($id)
+    {
+        $todo = Todo::find($id);
+        return response()->json([
+            'status' => 200,
+            'todo' => $todo,
+        ]);
+    }
+
+    public function update(Request $request, $id, $todo_id)
     {
         $todo = Todo::find($id);
         $todo->title = $request->title;
         $todo->description = $request->description;
-        $todo->completed = $request->completed;
         $todo->save();
         return response()->json($todo);
     }
