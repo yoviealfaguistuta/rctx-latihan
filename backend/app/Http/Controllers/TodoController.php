@@ -2,46 +2,32 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Todo;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Validator;
-
 
 class TodoController extends Controller
 {
     public function index()
     {
-        $todos = Todo::all();
-        // $todos = Todo::with('items')->find($id);
-        return response()->json($todos);
-
+        $todo = Todo::get();
+        return response()->json($todo);
     }
-
-    public function store(Request $request)
+    
+    public function store(Request $request, $todo_id)
     {
         $todo = new Todo();
-        $todo->title = $request->title;
+        $todo->tittle = $request->tittle;
         $todo->description = $request->description;
+        $todo->todo_id = $todo_id;
         $todo->save();
         return response()->json($todo);
-        
     }
 
-    public function detailTodo($id)
+    public function update(Request $request, $id)
     {
-        $todo = Todo::find($id);
-        return response()->json([
-            'status' => 200,
-            'todo' => $todo,
-        ]);
-    }
-
-    public function update(Request $request, $id, $todo_id)
-    {
-        $todo = Todo::find($id);
-        $todo->title = $request->title;
+        $todo = Todo::findOrFail($id);
+        // $todo = Todo::find($id);
+        $todo->tittle = $request->tittle;
         $todo->description = $request->description;
         $todo->save();
         return response()->json($todo);
@@ -49,8 +35,5 @@ class TodoController extends Controller
 
     public function destroy($id)
     {
-        $todo = Todo::find($id);
-        $todo->delete();
-        return response()->json(['message' => 'Todo deleted']);
     }
 }

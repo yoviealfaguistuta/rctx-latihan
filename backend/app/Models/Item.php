@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
 
+    protected $table = 'items';
+
     protected $fillable = [
         'title'
     ];
@@ -15,7 +17,6 @@ class Item extends Model
     public function todos(){
         return $this->belongsTo(Todo::class, 'todo_id');
     }
-
 
     use HasFactory;
 }
