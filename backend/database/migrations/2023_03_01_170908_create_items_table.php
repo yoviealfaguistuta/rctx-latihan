@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->foreign('todo_id')->references('id')->on('todos');
-            $table->string('title');
+            $table->string('tittle');
             $table->timestamps();
+            $table->integer('todo_id');
+            $table->foreign('todo_id')->references('id')->on('todos');
         });
     }
 

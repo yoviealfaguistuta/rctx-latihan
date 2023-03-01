@@ -2,10 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\App;
-
-
-use App\Http\Controllers\Controller;
 use App\Models\Item;
 use Illuminate\Http\Request;
 
@@ -14,50 +10,32 @@ class ItemController extends Controller
     public function index()
     {
         $items = Item::with('todos')->get();
-        // $items = Item::where('id', $todo)->get();
         return response()->json($items);
     }
-
-    public function store(Request $request)
+    
+    public function store(Request $request,$todo_id)
     {
-        $items = new Item();
-        $items->title = $request->title;
-        $items->save();
-        return response()->json($items);
-        
+        $item = new Item();
+        $item->tittle = $request->tittle;
+        $item->todo_id = $todo_id;
+        $item->save();
+        return response()->json($item);
     }
-
-    public function detailItem($id)
+    
+    public function update(Request $request, $id)
     {
-        $items = Item::find($id);
-        return response()->json([
-            'status' => 200,
-            'items' => $items,
-        ]);
-            
-        //  $items = Item::where('title', $todo)->get();
-        //  return response()->json($items);
-
-        // $items = Item::where('todos', 1)->get();
-        // return response()->json($items);
-
-        
+        $item = Item::where('todo_id', $id)->firstOrFail();
+        // $item = Item::find($id);
+        $item->tittle = $request->tittle;
+        $item->save();
+        return response()->json($item);
     }
-
-    public function update(Request $request, $id, $todo_id)
-    {
-        $items = Item::find($id);
-        $todo = $items->todos()->find($todo_id);
-        $todo->title = $request->title;
-        $todo->description = $request->description;
-        $items->save();
-        return response()->json($items);
-    }
-
+    
     public function destroy($id)
     {
-        $items = Item::find($id);
-        $items->delete();
-        return response()->json(['message' => 'items deleted']);
+        $item = Item::find($id);
+        $item->delete();
+        return response()->json(['message' => 'Item deleted']);
     }
+    
 }
