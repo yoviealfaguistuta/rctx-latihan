@@ -9,23 +9,41 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { List } from './todo/List';
+import  {Create}  from './todo/Create';
+import  {Update}  from './todo/Update';
 import { ListItem } from './item/List';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <List />,
-  },{
+  },
+  {
+    path: "/create",
+    element: <Create />,
+  },
+  {
+    path: "/update",
+    element: <Update />,
+  },
+  {
     path: "/item/:id",
     element: <ListItem />,
   },
+// {
+//   path: "/todo/:create",
+//   element:<Create/>,
+// },
+
 ]);
-ReactDOM.render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-    {/* <App /> */}
-  </React.StrictMode>,
-  document.getElementById('root')
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(
+  // <React.StrictMode>
+  // <List />
+  <RouterProvider router={router} />
+
+  // </React.StrictMode>
 );
 
 
