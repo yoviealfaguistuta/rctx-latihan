@@ -11,7 +11,8 @@ class Item extends Model
     protected $table = 'items';
 
     protected $fillable = [
-        'title'
+        'tittle',
+        'todo_id'
     ];
 
     public function todos(){
