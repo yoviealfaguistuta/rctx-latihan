@@ -7,10 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
+
+    protected $table = 'items';
+
     protected $fillable = [
-        'todo_id',
         'title'
     ];
+
+    public function todos(){
+        return $this->belongsTo(Todo::class, 'todo_id');
+    }
 
     use HasFactory;
 }

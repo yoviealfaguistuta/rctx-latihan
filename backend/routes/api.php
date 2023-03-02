@@ -1,7 +1,10 @@
 <?php
-
+use App\Http\Controllers\TodoController;
+use App\Http\Controllers\ItemController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +22,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // TODO ROUTE
-Route::get('/todos', [TodoController::class, 'index']);
-Route::post('/todos', [TodoController::class, 'store']);
-Route::put('/todos/{id}', [TodoController::class, 'update']);
-Route::delete('/todos/{id}', [TodoController::class, 'destroy']);
+Route::get('/todos',[TodoController::class, 'index']);
+Route::post('/tambah-todos', [TodoController::class, 'store']);
+Route::post('/detail-todos', [TodoController::class, 'detailTodo']);
+Route::put('/update-todos/{id}', [TodoController::class, 'update']);
+Route::delete('/hapus-todos/{id}', [TodoController::class, 'destroy']);
 
 
 // ITEM ROUTE
+Route::get('/items',[ItemController::class, 'index']);
+Route::post('/tambah-items', [ItemController::class, 'store']);
+Route::post('/detail-items', [ItemController::class, 'detailItem']);
+Route::put('/update-items/{id}', [ItemController::class, 'update']);
+Route::delete('/hapus-items/{id}', [ItemController::class, 'destroy']);
+
+

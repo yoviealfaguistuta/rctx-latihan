@@ -9,36 +9,31 @@ class TodoController extends Controller
 {
     public function index()
     {
-        $todos = Todo::get();
-        return response()->json($todos);
-
+        $todo = Todo::get();
+        return response()->json($todo);
     }
-
-    public function store(Request $request)
+    
+    public function store(Request $request, $todo_id)
     {
         $todo = new Todo();
-        $todo->title = $request->title;
+        $todo->tittle = $request->tittle;
         $todo->description = $request->description;
+        $todo->todo_id = $todo_id;
         $todo->save();
         return response()->json($todo);
-
-        
     }
 
     public function update(Request $request, $id)
     {
-        $todo = Todo::find($id);
-        $todo->title = $request->title;
+        $todo = Todo::findOrFail($id);
+        // $todo = Todo::find($id);
+        $todo->tittle = $request->tittle;
         $todo->description = $request->description;
-        $todo->completed = $request->completed;
         $todo->save();
         return response()->json($todo);
     }
 
     public function destroy($id)
     {
-        $todo = Todo::find($id);
-        $todo->delete();
-        return response()->json(['message' => 'Todo deleted']);
     }
 }
