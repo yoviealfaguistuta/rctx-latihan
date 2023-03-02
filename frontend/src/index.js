@@ -10,6 +10,8 @@ import {
 } from "react-router-dom";
 import { List } from './todo/List';
 import { ListItem } from './item/List';
+import Create from './item/Create';
+import Update from './item/Update';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +21,16 @@ const router = createBrowserRouter([
     path: "/item/:id",
     element: <ListItem />,
   },
+  {
+    path: "/item/create",
+    element: <Create />,
+  },
+
+  {
+    path: "/item/Update",
+    element: <Update />,
+  },
+
 ]);
 ReactDOM.render(
   <React.StrictMode>
