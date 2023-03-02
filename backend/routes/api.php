@@ -24,15 +24,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // TODO ROUTE
 Route::get('/todos',[TodoController::class, 'index']);
 Route::post('/tambah-todos', [TodoController::class, 'store']);
-Route::post('/detail-todos', [TodoController::class, 'detailTodo']);
+Route::get('/detail-todos/{id}', [TodoController::class, 'detailTodos']);
 Route::put('/update-todos/{id}', [TodoController::class, 'update']);
 Route::delete('/hapus-todos/{id}', [TodoController::class, 'destroy']);
 
 
 // ITEM ROUTE
 Route::get('/items',[ItemController::class, 'index']);
-Route::post('/tambah-items', [ItemController::class, 'store']);
-Route::post('/detail-items', [ItemController::class, 'detailItem']);
+Route::post('/tambah-items/{todoId}', [ItemController::class, 'store']);
+Route::get('/detail-items/{id}', [ItemController::class, 'detailItems']);
 Route::put('/update-items/{id}', [ItemController::class, 'update']);
 Route::delete('/hapus-items/{id}', [ItemController::class, 'destroy']);
 
