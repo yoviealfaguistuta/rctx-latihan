@@ -8,37 +8,33 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import List  from './item/List';
+
 import Create from './item/Create';
 import Update from './item/Update';
 
  
 
-import { List } from './todo/List';
-import  Create from './todo/Create';
-import  {Update}  from './todo/Update';
-import { ListItem } from './item/List';
+import { List as TodoList} from './todo/List';
+import  {Create as TodoCreate} from './todo/Create';
+import  {Update as TodoUpdate}  from './todo/Update';
+import List from './item/List';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <List />,
+    element: <TodoList />,
   },
   {
     path: "/create",
-    element: <Create />,
+    element: <TodoCreate />,
   },
   {
     path: "/update/:id",
-    element: <Update />,
+    element: <TodoUpdate />,
   },
   {
     path: "/item/list/:id",
-    element: <ListItem />,
-  },
-  {
-    path: "/item/list",
-    element: <List/>,
+    element: <List />,
   },
 // {
 //   path: "/todo/:create",

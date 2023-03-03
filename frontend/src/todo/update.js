@@ -75,4 +75,3 @@ return (
     )
 
 }
-export default Update;

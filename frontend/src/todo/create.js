@@ -14,7 +14,7 @@ import '../index2.css';
 
 
 
-function Create() {
+export function Create() {
     const [tittle, setTittle] = React.useState();
     const [description, setDescription] = React.useState();
 
@@ -64,4 +64,3 @@ function Create() {
     )
 
 }
-export default Create;
