@@ -53,7 +53,7 @@ class TodoController extends Controller
     public function destroy($id)
     {
 
-        $item = Item::where('todo_id', $id)->delete();
+        Item::where('todo_id', $id)->delete();
         
         $todo = Todo::where('id', $id)->findOrFail($id);
         $todo->items()->delete();
@@ -61,20 +61,6 @@ class TodoController extends Controller
         return response()->json(['message' => 'Todo deleted']);
 
 
-        //  // Ambil data post berdasarkan id
-        // $post = Post::findOrFail($id);
-
-        // // Hapus relasi data pada tabel terkait (users)
-        // $post->user()->delete();
-
-        // // Hapus data pada tabel posts
-        // $post->delete();
-
-        // return redirect()->route('posts.index')
-        //     ->with('success', 'Post has been deleted');
-
-        $item = Item::findOrFail($id);
-        $item->delete();
-        return response()->json(['message' => 'Item deleted']);
+      
     }
 }
