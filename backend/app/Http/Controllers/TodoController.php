@@ -17,25 +17,11 @@ class TodoController extends Controller
 
     public function store(Request $request)
     {
-        // return response()->json([$request->tittle]);
-
-        // $todo = new Todo();
-        // $todo->tittle = $request->tittle;
-        // $todo->description = $request->description;
-        // $todo->todo_id::Item->id;
-        // $todo->save();
-        // return response()->json($todo);
-
         $request->validate([
             'tittle' => 'required',
             'description' => 'required',
         ]);
 
-        // $todo = Todo::create([
-        //     'tittle' => $request->tittle,
-        //     'description' => $request->description,
-        // ]);
-        // return response()->json($todo);
 
         // Insert data pada tabel todos
         $todo = new Todo;
@@ -43,10 +29,7 @@ class TodoController extends Controller
         $todo->description = $request->description;
         $todo->save();
 
-        // //items
-        // $item = new Item();
-        // $item->todo_id =$todo->id;
-        // $item->save();
+    
 
         return response()->json(['message'=>'Todo Success']);
     }
@@ -69,8 +52,35 @@ class TodoController extends Controller
 
     public function destroy($id)
     {
-        $todo = Todo::with('items')->findOrFail($id);
+        // if () {
+        //     $id->delete();
+        //     return response()->json(['hapus']);
+        // } else {
+        //     return response()->json(['id data tidak sama']);
+        // }
+
+        
+
+        $todo = Todo::where('todo_id', $id)->findOrFail($id);
+        $todo->items()->delete();
         $todo->delete();
         return response()->json(['message' => 'Todo deleted']);
+
+
+        //  // Ambil data post berdasarkan id
+        // $post = Post::findOrFail($id);
+
+        // // Hapus relasi data pada tabel terkait (users)
+        // $post->user()->delete();
+
+        // // Hapus data pada tabel posts
+        // $post->delete();
+
+        // return redirect()->route('posts.index')
+        //     ->with('success', 'Post has been deleted');
+
+        $item = Item::findOrFail($id);
+        $item->delete();
+        return response()->json(['message' => 'Item deleted']);
     }
 }
