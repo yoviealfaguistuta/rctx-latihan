@@ -17,33 +17,12 @@ class ItemController extends Controller
     public function store(Request $request,$todo)
     {
 
-        // if ($item > $todo) {
-        //     // lakukan tindakan jika variabel sama dengan 'some value'
-        //   } else {
-        //     // lakukan tindakan jika variabel tidak sama dengan 'some value'
-        //   }
-        
-        // $item = new Item();
-        // $item->tittle = $request->tittle;
-        // $item->todo_id::Todo->id;
-        // $item->save();
-        // return response()->json($item);
-
-        // // $item = new Item;
-        // // $item->tittle = $request->item_tittle;
-        // // $item->description = $request->item_description;
-        // // $item->todo_id = $todo->id;
-        // // $item->save();
 
         $request->validate([
             'tittle' => 'required',
         ]);
 
-        // $todo = Todo::create([
-        //     'tittle' => $request->tittle,
-        //     'description' => $request->description,
-        // ]);
-        // return response()->json($todo);
+     
 
         // Insert data pada tabel todos
         $item = new Item();
@@ -51,10 +30,6 @@ class ItemController extends Controller
         $item->todo_id =$todo;
         $item->save();
 
-        // //items
-        // $item = new Item();
-        // $item->todo_id =$todo->id;
-        // $item->save();
 
         return response()->json(['message'=>'Item Success']);
     }
