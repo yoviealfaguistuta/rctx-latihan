@@ -8,14 +8,20 @@ use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
-    public function index()
+    public function index($id)
     {
-        $items = Item::with('todos')->get();
+        $items = Item::where('todo_id', $id)->get();
         return response()->json($items);
     }
 
     public function store(Request $request,$todo)
     {
+
+        // if ($item > $todo) {
+        //     // lakukan tindakan jika variabel sama dengan 'some value'
+        //   } else {
+        //     // lakukan tindakan jika variabel tidak sama dengan 'some value'
+        //   }
         
         // $item = new Item();
         // $item->tittle = $request->tittle;
