@@ -41,12 +41,12 @@ const router = createBrowserRouter([
 //   element:<Create/>,
 // },
   {
-    path: "/item/create",
+    path: "/item/create/:id",
     element: <Create/>,
   },
 
   {
-    path: "/item/Update",
+    path: "/item/update/:id",
     element: <Update/>,
   },
 ]);

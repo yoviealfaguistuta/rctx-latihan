@@ -7,16 +7,21 @@ import { Link } from 'react-router-dom';
 import Table from 'react-bootstrap/Table';
 import '../index.css';
 import { Card } from 'react-bootstrap';
+import { useNavigate,useParams } from 'react-router-dom';
+
 
 function List() {
     const [DataItem, setUserData] = useState([]);
+
+	const { id } = useParams();
+    let navigate = useNavigate();
 
 	useEffect(() => {
 		getItem();
 	}, []);
 
 	function getItem() {
-		axios.get('http://127.0.0.1:8000/api/items/1')
+		axios.get('http://127.0.0.1:8000/api/items/' + id)
 			.then(function (response) {
 				console.log('response :>> ', response.data);
 				setUserData(response.data)
@@ -30,7 +35,7 @@ function List() {
 	}
 
 	function deleteItem() {
-		axios.get('http://127.0.0.1:8000/api/hapus-items/1')
+		axios.delete('http://127.0.0.1:8000/api/hapus-items/' + id)
 			.then(function (response) {
 				getItem();
 			}).catch(function (error) {
@@ -47,13 +52,13 @@ function List() {
 			<div className="container-header-content">
 				<div className='row'>
 				<div className='col-4'>
-					<Link to={'/item/create'} className='btn btn-success mb-5' variant='success'>Kembali</Link>
+					<Link to={'/'} className='btn btn-success mb-5' variant='success'>Kembali</Link>
 					</div>
 					<div className='col-4 text-right'>
 						<h1 className='text-right mb-0' >DETAIL KEGIATAN</h1>
 					</div>
 					<div className='col-4 text-right'>
-					<Link to={'/item/create'} className='btn btn-success mb-5' variant='success'>+Tambah</Link>
+					<Link to={'/item/create/'+(id)} className='btn btn-success mb-5' variant='success'>+Tambah</Link>
 					</div>
 				</div>
 			</div>
@@ -72,7 +77,7 @@ function List() {
 								<tr>
 									<h5>{item.tittle}</h5>
 									<td>
-										<Link to={'/item/update'} className='btn btn-link'>Perbarui</Link>
+										<Link to={'/item/update/' + (item.id)} className='btn btn-link'>Perbarui</Link>
 										<Button onClick={() => deleteItem (item.id)} variant="success">Hapus</Button>
 										
 									</td>

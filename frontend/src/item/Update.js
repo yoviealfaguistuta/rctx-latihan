@@ -22,7 +22,7 @@ function Update() {
 
     const getDetailUser = () => {
         // axios.get('http://127.0.0.1:8000/api/detail-items/' + id).then(function (response) {
-            axios.get('http://127.0.0.1:8000/api/detail-items/1').then(function (response) {
+            axios.get('http://127.0.0.1:8000/api/detail-items/' +id).then(function (response) {
 
             setTittle(response.data.tittle);
 
@@ -35,7 +35,7 @@ function Update() {
     const updateItem = (e) => {
         e.preventDefault();
         // axios.post('http://127.0.0.1:8000/api/update-items/' + id, {
-        axios.post('http://127.0.0.1:8000/api/update-items/1', {
+        axios.post('http://127.0.0.1:8000/api/update-items/' + id, {
 
             tittle: tittle,
         }).then(function (response) {

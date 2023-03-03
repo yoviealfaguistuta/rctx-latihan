@@ -14,11 +14,12 @@ import '../index.css';
 function Create() {
     const [tittle, setTittle] = React.useState();
 
+    const { id } = useParams();
     let navigate = useNavigate();
 
     const createItem = (e) => {
         e.preventDefault();
-        axios.post('http://127.0.0.1:8000/api/tambah-items/1', {
+        axios.post('http://127.0.0.1:8000/api/tambah-items/' + id, {
             tittle: tittle,
         }).then(function (response) {
             return navigate("/");
