@@ -8,32 +8,28 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import { List } from './todo/List';
-import  {Create}  from './todo/Create';
-import  {Update}  from './todo/Update';
-import { ListItem } from './item/List';
+import List  from './item/List';
+import Create from './item/Create';
+import Update from './item/Update';
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <List />,
-  },
-  {
-    path: "/create",
-    element: <Create />,
-  },
-  {
-    path: "/update",
-    element: <Update />,
-  },
-  {
-    path: "/item/:id",
-    element: <ListItem />,
+    path: "/item/list",
+    element: <List/>,
   },
 // {
 //   path: "/todo/:create",
 //   element:<Create/>,
 // },
+  {
+    path: "/item/create",
+    element: <Create/>,
+  },
+
+  {
+    path: "/item/Update",
+    element: <Update/>,
+  },
 
 ]);
 const root = ReactDOM.createRoot(document.getElementById('root'));
