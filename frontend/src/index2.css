@@ -4,7 +4,7 @@
 section{
     min-height: 100vh;
     /* background: url('background6.jpg')no-repeat; */
-    background-color: #F1DEDE;
+    background-color: #EBE787;
   
 }
 
@@ -82,7 +82,7 @@ input{
 }
 
 
-.button1{
+.button{
     width: 100px;
     height: 40px;
     border-radius: 40px;

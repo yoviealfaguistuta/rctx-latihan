@@ -9,7 +9,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { List } from './todo/List';
-import  {Create}  from './todo/Create';
+import  Create from './todo/Create';
 import  {Update}  from './todo/Update';
 import { ListItem } from './item/List';
 
@@ -23,18 +23,13 @@ const router = createBrowserRouter([
     element: <Create />,
   },
   {
-    path: "/update",
+    path: "/update/:id",
     element: <Update />,
   },
   {
-    path: "/item/:id",
+    path: "/item/list/:id",
     element: <ListItem />,
   },
-// {
-//   path: "/todo/:create",
-//   element:<Create/>,
-// },
-
 ]);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
