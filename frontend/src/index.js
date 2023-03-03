@@ -12,7 +12,30 @@ import List  from './item/List';
 import Create from './item/Create';
 import Update from './item/Update';
 
+ 
+
+import { List } from './todo/List';
+import  Create from './todo/Create';
+import  {Update}  from './todo/Update';
+import { ListItem } from './item/List';
+
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <List />,
+  },
+  {
+    path: "/create",
+    element: <Create />,
+  },
+  {
+    path: "/update/:id",
+    element: <Update />,
+  },
+  {
+    path: "/item/list/:id",
+    element: <ListItem />,
+  },
   {
     path: "/item/list",
     element: <List/>,
@@ -30,7 +53,6 @@ const router = createBrowserRouter([
     path: "/item/Update",
     element: <Update/>,
   },
-
 ]);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
