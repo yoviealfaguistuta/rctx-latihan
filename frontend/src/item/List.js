@@ -34,16 +34,15 @@ function List() {
 			});
 	}
 
-	function deleteItem() {
-		axios.delete('http://127.0.0.1:8000/api/hapus-items/' + id)
-			.then(function (response) {
-				getItem();
-			}).catch(function (error) {
-
-			}).finally(function () {
-
-			});
-		}
+	const deleteItem = (id) => {
+		axios.delete('http://127.0.0.1:8000/api/hapus-items/' + id).then(function (response) {
+		  getItem();
+		}).catch(function (error) {
+	
+		}).finally(function () {
+	
+		});
+	  }
 
     return(
 		<section className='Section2'>
@@ -78,7 +77,7 @@ function List() {
 									<h5>{item.tittle}</h5>
 									<td>
 										<Link to={'/item/update/' + (item.id)} className='btn btn-link'>Perbarui</Link>
-										<Button onClick={() => deleteItem (item.id)} variant="success">Hapus</Button>
+										<Button onClick={() => deleteItem(item.id)} variant="success">Hapus</Button>
 										
 									</td>
 								</tr>

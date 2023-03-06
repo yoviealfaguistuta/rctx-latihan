@@ -42,8 +42,8 @@ class ItemController extends Controller
 
     public function update(Request $request, $id)
     {
-        $item = Item::where('todo_id', $id)->firstOrFail();
-        // $item = Item::find($id);
+        $item = Item::findOrFail($id);
+        // $todo = Todo::find($id);
         $item->tittle = $request->tittle;
         $item->save();
         return response()->json($item);
